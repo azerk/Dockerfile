@@ -1,0 +1,21 @@
+FROM golang:1.9.2
+
+MAINTAINER kzz
+
+RUN mkdir  /usr/local/gopath
+RUN mkdir  /usr/local/gopath/src
+ENV GOPATH /usr/local/gopath
+ADD gin_web.tar.gz /usr/local/gopath/src
+# 安装gin
+RUN go get github.com/gin-gonic/gin
+#下载安装go-bindata
+RUN go get -u github.com/jteeuwen/go-bindata/...
+
+#RUN echo "export GOPATH=/root/gopath" >> /root/.bashrc
+#RUN source /root/.bashrc
+
+# 通过开发计算机上容器的8080端口暴露该应用程序。最后一行，
+EXPOSE 8080
+
+# 使用go run命令开始对我们的应用程序进行实时重载。
+CMD ["go", "run","/usr/local/gopath/src/gin_web/main.go"]

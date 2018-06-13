@@ -1,0 +1,4 @@
+From tomcat
+
+MAINTAINER kzz
+ADD  education.war /usr/local/tomcat/webapps/
